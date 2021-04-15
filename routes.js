@@ -1,23 +1,32 @@
 const router = require("express").Router();
 
-router.get("/tshirt", (req, res) => {
+router.get("/oranges", (req, res) => {
   res.status(200).send({
-    tshirt: "👕",
-    size: "large",
+    fruit: "🍊🍊🍊",
   });
 });
 
-router.post("/tshirt/:id", (req, res) => {
-  const { id } = req.params;
-  const { logo } = req.body;
-
-  if (!logo) {
-    res.status(418).send({ message: "We need a logo!" });
-  }
-
-  res.send({
-    tshirt: `👕 with your ${logo} and ID of ${id}`,
+router.get("/berries", (req, res) => {
+  res.status(200).send({
+    fruit: "🍓",
   });
+});
+
+router.get("/pineapples", (req, res) => {
+  res.status(200).send({
+    fruit: "🍍🍍",
+  });
+});
+
+router.post("/addItem", (req, res) => {
+  const name = req.body.name;
+  const item = req.body.item;
+
+  if (!name || !item) {
+    res.send("No name or item found! Please try again!");
+  } else {
+    res.send(`Thanks for your input: ${item} and ${name}`);
+  }
 });
 
 module.exports = router;
